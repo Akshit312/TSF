@@ -1,0 +1,23 @@
+try:
+        msg = MIMEMultipart()
+        SUBJECT = "TSF"
+        TO=email
+     #   FROM==                                                # Enter your Email
+     #   email_password==                                        # Enter Your Password
+        msg['From'] = FROM
+        msg['To'] = email
+        msg['Subject'] = SUBJECT
+        SUBJECT = SUBJECT
+      
+        msg.attach(MIMEText(message, 'html'))
+                                                                                # Creating a session    
+        server = smtplib.SMTP('smtp.gmail.com')
+        server.starttls()
+                                                                                # Logging in to the server    
+        server.login(FROM,email_password)
+                                                                                # Sending email with       
+        server.sendmail(FROM, [TO], msg.as_string())
+        server.quit()
+        print "Email sent successfully"
+    except smtplib.SMTPException:
+        print "error sending message"
